@@ -18,14 +18,21 @@ function output (data) {
 }
 
 // report only track event to console
+tk102.on ('data', output);
+
 tk102.on ('track', output);
+
+tk102.on ('log', function(name, value) {
+  console.log('Event:', name);
+  console.log(value);
+});
 
 // wait for server to be ready
 tk102.on ('listening', function (lst) {
   var client;
 
   console.log ('TK102 server is ready');
-
+/*
   // Send data with telnet
   client = net.connect (lst.port, function () {
     console.log ('Connected to TK102 server');
@@ -36,6 +43,7 @@ tk102.on ('listening', function (lst) {
 
     console.log ('CTRL+C to exit');
   });
+  */
 });
 
 // start server
