@@ -15,7 +15,10 @@
     "url": "https://github.com/fvdm/nodejs-tk102/issues"
   },
   "main": "tk102.js",
-  "dependencies": {},
+  "dependencies": {
+    "log4js": "^2.5.3",
+    "mongodb": "^3.0.3"
+  },
   "devDependencies": {
     "dotest": "^2.3.0"
   },
