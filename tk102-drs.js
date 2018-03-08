@@ -18,9 +18,8 @@ const logger = log4js.getLogger('TRACKING');
 const TrackStore = require('./lib/trackStore');
 const trackstore = new TrackStore();
 
-//var gps = '1203292316,0031698765432,GPRMC,211657.000,A,5213.0247,N,00516.7757,E,0.00,273.30,290312,,,A*62,F,imei:123456789012345,123';
-var gps = '1203292316,0031698765432,GPRMC,211657.000,A,4706.0485,N,01525.4577,E,0.00,273.30,290312,,,A*62,F,imei:123456789012345,123';
-const china_tk102_gpsstring = '#353588102011094##1#0000#AUT#01#2320011dbf9ac0#01525.4577,E,4706.0485,N,0.00,0.00#260218#091514.000##';
+const original_tk102_teststring = '1203292316,0031698765432,GPRMC,211657.000,A,5213.0247,N,00516.7757,E,0.00,273.30,290312,,,A*62,F,imei:123456789012345,123';
+const paj_teststring = '*HQ,1203292316,V1,141825,A,4706.0098,N,01525.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#';
 
 
 // fancy console log
@@ -57,7 +56,7 @@ trackstore.getEmitter()
                         insertObj.date = new Date(finishedTrack.datetime);
                         insertObj.account_id = docs[0][0].account_id;
 
-                        trackstore.getTracks()
+                        trackstore.getTracks();
                         insertObj.pilotName = docs[0][0].title ? docs[0][0].title + ' ' + docs[0][0].name + ' ' + docs[0][0].surname : docs[0][0].name + ' ' + docs[0][0].surname;
                         insertObj.droneName = docs[1][0].manufacturer + ' ' + docs[1][0].model;
 
@@ -159,7 +158,7 @@ tk102.on('listening', function (lst) {
         console.log('Connected to TK102 server');
         console.log('Sending GPS data string for processing');
 
-        client.write(china_tk102_gpsstring + '\r\n');
+        client.write(paj_teststring + '\r\n');
         client.end();
 
         console.log('CTRL+C to exit');

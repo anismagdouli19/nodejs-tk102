@@ -7,9 +7,8 @@
 var tk102 = require('./lib/tk102');
 var net = require('net');
 
-var gps = '1203292316,0031698765432,GPRMC,211657.000,A,5213.0247,N,00516.7757,E,0.00,273.30,290312,,,A*62,F,imei:123456789012345,123';
-var asd = '*HQ,8120016933,V1,141825,A,4706.0098,N,01525.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#';
-const china_tk102_gpsstring = '#353588102011094##1#0000#AUT#01#2320011dbf9ac0#1525.570600,E,4706.119300,N,0.00,0.00#260218#091514.000##';
+const original_tk102_teststring = '1203292316,0031698765432,GPRMC,211657.000,A,5213.0247,N,00516.7757,E,0.00,273.30,290312,,,A*62,F,imei:123456789012345,123';
+const paj_teststring = '*HQ,8120016933,V1,141825,A,4706.0098,N,01525.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#';
 
 // fancy console log
 function output(data) {
@@ -55,7 +54,7 @@ tk102.on('listening', function (lst) {
         console.log('Connected to TK102 server');
         console.log('Sending GPS data string for processing');
 
-        clientDrs.write(china_tk102_gpsstring + '\r\n');
+        clientDrs.write(paj_teststring + '\r\n');
         clientDrs.end();
 
         console.log('CTRL+C to exit');
