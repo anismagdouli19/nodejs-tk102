@@ -10,9 +10,6 @@ const paj_teststring = '*HQ,1203292316,V1,141825,A,4706.0098,N,01525.4893,E,001.
 
 
 tk102.on('log', function (name, value) {
-    const date = new Date();
-    logger.info('\n' + date.toString());
-
     logger.info('Event:', name);
     logger.info(value);
 });
