@@ -5,7 +5,7 @@ config.appPort=1337;
 config.mongoURL='mongodb://127.0.0.1:27017/dronerescue';
 config.dbName='dronerescue';
 
-config.finishTrackTimeOutInSeconds = 10; //time which should pass before finishing a track (in seconds)
+config.finishTrackTimeOutInSeconds = 20000; //time which should pass before finishing a track (in ms)
 config.trackWatcherIntervall = 10000; // in ms
 
 config.log4js={

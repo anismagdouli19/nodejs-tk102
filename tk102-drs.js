@@ -24,19 +24,18 @@ const paj_teststring = '*HQ,1203292316,V1,141825,A,4706.0098,N,01525.4893,E,001.
 
 // fancy console log
 function output(data) {
-    console.log('\nIncoming GPS data:\n');
+    /*console.log('\nIncoming GPS data:\n');
     console.dir(data, {
         colors: String(process.env.TERM)
             .match(/color$/)
-    });
+    });*/
 }
 
 trackstore.getEmitter()
     .on('finished', finishedTrack => {
-        console.log(finishedTrack);
+        //console.log(finishedTrack);
 
-        console.log(trackstore.getTracks());
-
+        //console.log(trackstore.getTracks());
 
         let insertObj = finishedTrack;
 
@@ -133,14 +132,14 @@ tk102.on('track', (data) => {
     logger.info('incoming from IMEI:', data.imei, 'GEO:', data.geo);
 
     let track = {};
-    track.gpsData = [];
-    track.gpsData.push({
+    //track.gpsData = [];
+    track.gpsData = {
         lat: data.geo.latitude,
         lng: data.geo.longitude,
         e: 500,
         t: new Date(data.datetime),
         s: data.speed
-    });
+    };
     track.datetime = data.datetime;
     track.imei = data.imei;
 
@@ -154,15 +153,47 @@ tk102.on('listening', function (lst) {
     console.log('TK102 server is ready');
 
 // Send data with telnet
+
+    /*
     client = net.connect(lst.port, function () {
         console.log('Connected to TK102 server');
         console.log('Sending GPS data string for processing');
 
-        client.write(paj_teststring + '\r\n');
+        client.write('*HQ,1203292316,V1,141825,A,4706.0098,N,01525.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');
+
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4306.0158,N,01525.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1000);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4206.0158,N,01525.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1100);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4106.0158,N,01525.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1200);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4006.0158,N,01425.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1300);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4005.0158,N,01325.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1400);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4004.0158,N,01325.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1500);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4003.0158,N,01325.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1600);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4002.0158,N,01325.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1700);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4001.0158,N,01325.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1800);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4000.0158,N,01325.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 1900);
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4033.0158,N,01325.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');  }, 2000);
+
+        setTimeout(function(){ client.write('*HQ,1203292316,V1,141825,A,4006.0158,N,01225.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n'); client.end(); }, 3000);
+
+
+
+
+        console.log('CTRL+C to exit');
+    });
+
+    */
+
+    /*
+    client = net.connect(lst.port, function () {
+        console.log('Connected to TK102 server');
+        console.log('Sending GPS data string for processing');
+
+        client.write('*HQ,1203292316,V1,141825,A,4706.0078,N,01525.4893,E,001.00,247,280218,FFFFFBFF,232,01,0,0,3#' + '\r\n');
         client.end();
 
         console.log('CTRL+C to exit');
     });
+    */
 });
 
 // start server
