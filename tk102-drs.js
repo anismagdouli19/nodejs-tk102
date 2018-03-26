@@ -139,7 +139,7 @@ tk102.on('track', (data) => {
         lng: data.geo.longitude,
         e: 500,
         t: new Date(data.datetime),
-        s: 0.5
+        s: data.speed
     });
     track.datetime = data.datetime;
     track.imei = data.imei;
